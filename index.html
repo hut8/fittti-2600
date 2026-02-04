@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1024">
+    <title>Fake it 'til they take it</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .fallback-message {
+            display: none;
+            font-family: sans-serif;
+            line-height: 1.3;
+            width: 780px;
+            padding: 10px 10px 0;
+            margin: 20px auto;
+            border: 1px solid #e4c652;
+            border-radius: 10px;
+            background: #fffacd;
+            color: #333;
+        }
+        .impress-not-supported .fallback-message { display: block; }
+
+        .notes { display: none; }
+
+        /* ── Step base ── */
+        .step {
+            width: 1200px;
+            padding: 60px;
+            font-size: 28px;
+            line-height: 1.6;
+            opacity: 0.15;
+            transition: opacity 0.8s;
+        }
+        .step.active { opacity: 1; }
+
+        /* ── Typography ── */
+        h1 {
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 52px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        h3 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .subtitle {
+            font-size: 32px;
+            color: #888;
+            font-weight: 400;
+        }
+
+        .accent { color: #00e676; }
+        .warn { color: #ff5252; }
+        .highlight { color: #ffab40; }
+        .blue { color: #40c4ff; }
+
+        code, .mono {
+            font-family: 'Source Code Pro', monospace;
+            background: rgba(255,255,255,0.06);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        pre {
+            font-family: 'Source Code Pro', monospace;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 24px;
+            font-size: 22px;
+            line-height: 1.5;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #00e676;
+        }
+
+        .big-number {
+            font-size: 120px;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: #00e676;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 32px;
+            margin: 16px 0;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(0,230,118,0.15);
+            color: #00e676;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .tag.red {
+            background: rgba(255,82,82,0.15);
+            color: #ff5252;
+        }
+
+        .tag.blue {
+            background: rgba(64,196,255,0.15);
+            color: #40c4ff;
+        }
+
+        .tag.orange {
+            background: rgba(255,171,64,0.15);
+            color: #ffab40;
+        }
+
+        .step-number {
+            font-size: 180px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.04);
+            position: absolute;
+            right: 40px;
+            top: 20px;
+        }
+
+        .overview { display: none; }
+
+        /* ── Slide images ── */
+        .slide-img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid #333;
+            margin: 20px 0;
+        }
+
+        .slide-video {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid #333;
+            margin: 20px 0;
+        }
+
+        .img-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .img-grid img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        /* ── Flowchart ── */
+        .flow {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 20px;
+        }
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .flow-node {
+            background: rgba(255,255,255,0.04);
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 14px 22px;
+            font-size: 22px;
+            min-width: 420px;
+            position: relative;
+        }
+        .flow-node.alice  { border-color: #00e676; }
+        .flow-node.bob    { border-color: #40c4ff; }
+        .flow-node.mallory { border-color: #ff5252; }
+        .flow-num {
+            font-weight: 900;
+            font-size: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .flow-num.green  { background: rgba(0,230,118,0.2); color: #00e676; }
+        .flow-num.blue   { background: rgba(64,196,255,0.2); color: #40c4ff; }
+        .flow-num.red    { background: rgba(255,82,82,0.2); color: #ff5252; }
+        .flow-num.orange { background: rgba(255,171,64,0.2); color: #ffab40; }
+        .flow-arrow {
+            font-size: 24px;
+            color: #555;
+            text-align: center;
+            padding: 2px 0 2px 56px;
+        }
+
+        /* Dense slide — for text-heavy slides */
+        .step.dense {
+            padding: 30px 50px;
+            font-size: 22px;
+            line-height: 1.4;
+        }
+        .step.dense h2 { font-size: 42px; margin-bottom: 14px; }
+        .step.dense ul li { padding: 4px 0 4px 30px; }
+        .step.dense .slide-img { margin: 10px 0; max-height: 280px; width: auto; }
+    </style>
+</head>
+<body class="impress-not-supported">
+
+    <div class="fallback-message">
+        <p>Your browser <b>doesn't support the features required</b> by impress.js, so a simplified version of this presentation is shown.</p>
+    </div>
+
+    <div id="impress" data-transition-duration="1000" data-width="1400" data-height="900">
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- TITLE -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="title" class="step" data-x="0" data-y="0" data-scale="4">
+            <h1><span class="accent">Fake it</span> 'til they <span class="warn">take</span> it</h1>
+            <div class="divider"></div>
+            <p class="subtitle">exposing the poisoned address playbook</p>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- BACKGROUND -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="background" class="step" data-x="2400" data-y="800" data-rotate="5">
+            <span class="tag">Background</span>
+            <h2>How I fell down this rabbit hole</h2>
+            <ul>
+                <li>I buy crypto <span class="accent">peer-to-peer</span> sometimes</li>
+                <li>Forgot my Trezor one day — needed my wallet address</li>
+                <li>Looked up the seller's recent transactions to <span class="blue">find my own address</span></li>
+                <li>Most blockchains are <span class="warn">radically public</span> — check <code>etherscan.io</code></li>
+                <li>Nearly got scammed in the process</li>
+                <li>Scams are <span class="highlight">fascinating</span></li>
+                <li>I am <span class="accent">dangerously sidequest-prone</span></li>
+            </ul>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- ALICE / BOB / MALLORY -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="alice-bob" class="step" data-x="4800" data-y="1600" data-rotate="10">
+            <span class="tag blue">Terminology</span>
+            <h2>Meet the cast</h2>
+            <ul>
+                <li><span class="accent">Alice</span> — the sender, the one initiating communication</li>
+                <li><span class="blue">Bob</span> — the receiver, the intended recipient</li>
+                <li><span class="warn">Mallory</span> — the <em>malicious</em> actor, actively tampering with messages</li>
+            </ul>
+            <div class="divider"></div>
+            <p>These are <span class="highlight">metasyntactic variables</span> — placeholder names used in cryptography and security to describe protocol participants. They come from early academic papers and are codified in <code>RFC 4949</code>.</p>
+            <p style="margin-top: 16px;">Why not just say "Person A"? Because giving each role a <em>name</em> makes complex protocols readable. When you see Alice, you instantly know: she's sending. Mallory? She's up to no good.</p>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- SCAM FLOWCHART -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="flowchart" class="step" data-x="7200" data-y="2400" data-rotate="15" data-scale="2">
+            <span class="tag red">The Attack</span>
+            <h2>The poisoned address playbook</h2>
+            <div class="flow">
+                <div class="flow-step">
+                    <span class="flow-num green">1</span>
+                    <div class="flow-node alice"><span class="accent">Alice</span> sends crypto to <span class="blue">Bob</span> — a normal, legitimate transaction</div>
+                </div>
+                <div class="flow-arrow">&#8595;</div>
+                <div class="flow-step">
+                    <span class="flow-num red">2</span>
+                    <div class="flow-node mallory"><span class="warn">Mallory</span> sees this on the public blockchain and notes Alice's address</div>
+                </div>
+                <div class="flow-arrow">&#8595;</div>
+                <div class="flow-step">
+                    <span class="flow-num red">3</span>
+                    <div class="flow-node mallory"><span class="warn">Mallory</span> generates a <span class="highlight">lookalike address</span> — matching the first &amp; last few characters of Bob's</div>
+                </div>
+                <div class="flow-arrow">&#8595;</div>
+                <div class="flow-step">
+                    <span class="flow-num red">4</span>
+                    <div class="flow-node mallory"><span class="warn">Mallory</span> sends a <span class="highlight">zero-value tx</span> to Alice from the fake address — poisoning her history</div>
+                </div>
+                <div class="flow-arrow">&#8595;</div>
+                <div class="flow-step">
+                    <span class="flow-num orange">5</span>
+                    <div class="flow-node alice"><span class="accent">Alice</span> later copies an address from her tx history, thinking it's Bob's — <span class="warn">it's Mallory's</span></div>
+                </div>
+                <div class="flow-arrow">&#8595;</div>
+                <div class="flow-step">
+                    <span class="flow-num red">6</span>
+                    <div class="flow-node mallory">Funds go to <span class="warn">Mallory</span>. Irreversible. Gone.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- QUESTIONS -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="questions" class="step" data-x="10000" data-y="3200" data-rotate="20">
+            <span class="tag orange">Investigation</span>
+            <h2>Questions I had</h2>
+            <div class="card">
+                <h3><span class="highlight">01</span></h3>
+                <p>How prevalent is this scam?</p>
+                <p>Can it be easily identified?</p>
+            </div>
+            <div class="card">
+                <h3><span class="highlight">02</span></h3>
+                <p>What is the scammers' revenue, expenses, and profit?</p>
+            </div>
+            <div class="card">
+                <h3><span class="highlight">03</span></h3>
+                <p>Ethics aside, am I in the wrong line of work?</p>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- PYTHON — parent (zoomed out) -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="python" class="step" data-x="13500" data-y="4200" data-rotate="25" data-scale="3">
+            <span class="tag">Broadly Relevant Topic #1</span>
+            <h2>Python</h2>
+            <ul>
+                <li>Python is great. I like Python.</li>
+                <li>My use case:
+                    <ul>
+                        <li>Import addresses, transactions, prices into DB from ETH node (JSON-RPC)</li>
+                        <li>Must be really fast</li>
+                        <li>Perform some basic filtering and analysis</li>
+                    </ul>
+                </li>
+                <li>My first choice. But then...
+                    <ul>
+                        <li>ETL process should be I/O bound — PG/ETH Node should be bottleneck</li>
+                        <li>It was <span class="warn">slow</span>; CPU bound</li>
+                        <li>Time to do <span class="highlight">profiling!</span></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- PYTHON PERF — nested child 1 (zoom in) -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="python-perf" class="step" data-x="11700" data-y="4200" data-rotate="25" data-scale="1">
+            <span class="tag red">Python Performance</span>
+            <h2>It's bad</h2>
+            <ul>
+                <li><code>cProfile</code>, <code>profile</code>, <code>hotshot</code> all come with Python</li>
+                <li>None support multithreading, asyncio, multiprocessing</li>
+                <li>Use <code class="accent">yappi</code></li>
+                <li>Use <code class="accent">snakeviz</code> to see results</li>
+                <li>Zen of Python vs concurrent/parallel code in Python</li>
+            </ul>
+            <img src="assets/snakeviz-screenshot.png" alt="snakeviz profiling output" class="slide-img">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- WHY SLOW — nested child 2 (zoom in) -->
+        <!-- contains two further zoom-ins -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="why-slow" class="step" data-x="14400" data-y="5400" data-rotate="25" data-scale="1">
+            <span class="tag orange">Why slow? Why CPU bound?</span>
+            <h2>Profiling results</h2>
+            <ul>
+                <li>Premature optimization: root of all evil</li>
+                <li>Profiling: started with <code>-m cProfile</code></li>
+                <li><span class="warn">Proxy check</span> was taking 33% of the time</li>
+                <li>Kenneth Reitz wrote <code>requests</code> (smart guy)</li>
+            </ul>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- PROFILING DETAIL — grandchild 1 (deep zoom) -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="profiling-detail" class="step" data-x="13600" data-y="5900" data-rotate="25" data-scale="0.4">
+            <h3>cProfile output</h3>
+            <img src="assets/cprofile-output.png" alt="cProfile profiling output" class="slide-img">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- THE SOLUTION — grandchild 2 (deep zoom) -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="the-solution" class="step" data-x="15200" data-y="5900" data-rotate="25" data-scale="0.4">
+            <span class="tag accent">The solution!</span>
+            <img src="assets/solution-screenshot.png" alt="The solution - trust_env = False" class="slide-img">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- RUST — parent (zoomed out) -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="rust" class="step" data-x="17500" data-y="4200" data-rotate="30" data-scale="3">
+            <span class="tag">Broadly Relevant Topic #2</span>
+            <h2>Rust</h2>
+            <ul>
+                <li>Rust is good. I like Rust.</li>
+                <li>Concurrency is weird but improving — async/await like JS, but needs a runtime (not part of the language). Threads still work. Just use tokio.</li>
+                <li>Macros/build system is mind-blowing — single statically linked binary, check SQL at compile time against a real database!</li>
+                <li>Cline rewrote the ETL process in Rust.</li>
+                <li>Rust is <span class="warn">hard!</span> Explicit ownership is radical. Editions are a great idea.</li>
+                <li>Amazing package manager (<span class="accent">Cargo</span>), ecosystem, community, and tooling with zero effort. Cline is good at it.</li>
+            </ul>
+            <img src="assets/rust-cargo-screenshot.png" alt="htop showing all CPU cores at 100% during Rust ETL" class="slide-img">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- RUST CODE — nested child (zoom in) -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="rust-sqlx" class="step" data-x="18800" data-y="5400" data-rotate="30" data-scale="0.5">
+            <h3>Compile-time SQL checking with <code class="accent">sqlx::query!</code></h3>
+            <img src="assets/rust-detail-screenshot.png" alt="VS Code showing sqlx compile-time SQL checking in Rust" class="slide-img">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- SOUTH PARK / VIBE CODING — parent -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="vibe-coding" class="step" data-x="21500" data-y="4200" data-rotate="35" data-scale="3">
+            <span class="tag">Broadly Relevant Topic #3</span>
+            <h2>They took our jerb! <span class="subtitle">(aka "Vibe Coding")</span></h2>
+            <p style="margin-bottom: 16px;">Goobacks (S8E7 on 2004-04-28) and... Deep Learning (S26E4 on 2023-03-08)</p>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- VIDEO 1: Took our jobs -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="took-our-jobs" class="step" data-x="19800" data-y="4800" data-rotate="35" data-scale="1">
+            <h3>They took our jobs!</h3>
+            <video class="slide-video" controls>
+                <source src="assets/tookourjobs.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- VIDEO 2: ChatGPT, dude -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="chatgpt-dude" class="step" data-x="21500" data-y="5600" data-rotate="35" data-scale="1">
+            <h3>ChatGPT, dude</h3>
+            <video class="slide-video" controls>
+                <source src="assets/chatgpt-dude.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- CLINE TASK — nested (zoom in) -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="cline-task" class="step" data-x="20200" data-y="6400" data-rotate="35" data-scale="0.5">
+            <h3>Cline: generate an ETH schema</h3>
+            <img src="assets/southpark-screenshot1.png" alt="Cline task: generate SQL schema for Ethereum blocks and transactions" class="slide-img">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- CLINE REASONING — nested (zoom in) -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="cline-reasoning" class="step" data-x="21500" data-y="6800" data-rotate="35" data-scale="0.8">
+            <h3>Cline thinks it through</h3>
+            <div class="img-grid">
+                <img src="assets/southpark-screenshot2.png" alt="Cline reasoning about Ethereum block fields">
+                <img src="assets/southpark-screenshot3.png" alt="Cline reasoning about transaction receipts and logs">
+                <img src="assets/southpark-screenshot4.png" alt="Cline creates ethereum_schema.sql">
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- CLINE OUTPUT — nested (zoom in) -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="cline-output" class="step" data-x="22800" data-y="6400" data-rotate="35" data-scale="0.5">
+            <h3>The generated schema</h3>
+            <img src="assets/southpark-ollama.png" alt="Generated SQL schema for Ethereum blockchain data" class="slide-img">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- LOCAL LLM — nested (deep zoom) -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="local-llm" class="step" data-x="23200" data-y="7200" data-rotate="35" data-scale="0.5">
+            <span class="tag orange">Advice wanted!</span>
+            <h3>Running LLMs locally</h3>
+            <ul>
+                <li>Some businesses are paranoid, some managers hate productivity — Cline/Claude isn't for all projects</li>
+                <li>ETH switching from POW to POS = more GPUs available</li>
+                <li>Tried open-source models via ollama — <span class="warn">it did not go well at all</span></li>
+                <li>Are there any good ones? How do you deploy them?</li>
+            </ul>
+            <img src="assets/southpark-localllm.png" alt="Cline Ollama configuration for local LLM" class="slide-img">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- POSTGRESQL — parent (zoomed out) -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="postgres" class="step" data-x="25500" data-y="4200" data-rotate="40" data-scale="3">
+            <span class="tag">Broadly Relevant Topic #3</span>
+            <h2>PostgreSQL <span class="subtitle">(The elephant in the room)</span></h2>
+            <div class="grid-2">
+                <div>
+                    <ul>
+                        <li>Recently compared RDBMS for a client — <span class="accent">best choice by far</span>. Free (beer + freedom), tons of managed offerings, 400+ extensions.</li>
+                        <li>Read Hacker News</li>
+                    </ul>
+                    <img src="assets/postgres-hackernews.jpg" alt="Hacker News discussion about PostgreSQL" class="slide-img">
+                </div>
+                <div style="text-align: center;">
+                    <img src="assets/postgresql-elephant.png" alt="PostgreSQL elephant logo" class="slide-img" style="max-width: 400px;">
+                </div>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- POSTGRES ECOSYSTEM — nested (zoom in) -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="postgres-ecosystem" class="step" data-x="26500" data-y="5600" data-rotate="40" data-scale="0.5" style="padding: 0; display: flex; align-items: center; justify-content: center;">
+            <img src="assets/postgres-ecosystem.jpg" alt="PostgreSQL ecosystem diagram" class="slide-img" style="max-width: 100%; max-height: 850px; margin: 0; object-fit: contain;">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- PARQUET FILES -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="parquet" class="step" data-x="29000" data-y="5000" data-rotate="45">
+            <span class="tag">Broadly Relevant Topic #4</span>
+            <h2>Parquet Files</h2>
+            <p style="margin-bottom: 12px;">Start with CSV, then solve every problem:</p>
+            <ul>
+                <li>Add schema (with types)</li>
+                <li>CSV has dozens of "conventions" (e.g., null = ?)
+                    <ul>
+                        <li>Parquet is well-defined</li>
+                    </ul>
+                </li>
+                <li>Compression (Snappy, GZIP, Brotli)</li>
+                <li>Columnar layout: only read subset of fields</li>
+                <li>Nested data structures: no more ad-hoc</li>
+                <li>Metadata: statistics, custom K/V, timestamps</li>
+                <li>Partitioning: split into N files; engines support that!</li>
+                <li>No I10N ambiguity: with floats, what is "," vs. "."?</li>
+            </ul>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- SCAM ANALYSIS — parent (zoomed out) -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="scam-analysis" class="step" data-x="32500" data-y="4200" data-rotate="50" data-scale="3">
+            <span class="tag red">The Analysis</span>
+            <h2>Scam analysis!</h2>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- DUPLICATE SHORT ADDRESSES -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="duplicate-addresses" class="step" data-x="30800" data-y="4200" data-rotate="50" data-scale="1">
+            <span class="tag orange">Address Collisions</span>
+            <h2>Duplicate short addresses</h2>
+            <ul>
+                <li>ETH addresses are <span class="accent">40 hex characters</span>
+                    <ul>
+                        <li>2 hex chars per byte × 20 bytes = 160 bits</li>
+                    </ul>
+                </li>
+                <li>People typically only check the <span class="highlight">first and last few characters</span>
+                    <ul>
+                        <li>First 4 + last 4 hex chars = 8 hex chars = 4 bytes = 32 bits ≈ <span class="accent">4.3 billion</span></li>
+                    </ul>
+                </li>
+                <li><span class="blue">299 million</span> distinct addresses observed</li>
+                <li>299M / 4.3B ≈ ~<span class="warn">1 in 14</span> addresses have a duplicate</li>
+            </ul>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- TRANSACTION ANALYSIS — arrows + PostgreSQL -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="tx-analysis" class="step" data-x="32500" data-y="5400" data-rotate="50" data-scale="1">
+            <h3>Transaction pattern</h3>
+            <div class="flow">
+                <div class="flow-step">
+                    <span class="flow-num green">1</span>
+                    <div class="flow-node alice"><span class="accent">Alice</span> → <span class="blue">Bob</span> <span style="color:#888">(legitimate)</span></div>
+                </div>
+                <div class="flow-arrow">&#8595;</div>
+                <div class="flow-step">
+                    <span class="flow-num red">2</span>
+                    <div class="flow-node mallory"><span class="warn">Mallory</span> → <span class="accent">Alice</span> <span style="color:#888">(bait)</span></div>
+                </div>
+                <div class="flow-arrow">&#8595;</div>
+                <div class="flow-step">
+                    <span class="flow-num red">3</span>
+                    <div class="flow-node mallory"><span class="accent">Alice</span> → <span class="warn">Mallory</span> <span style="color:#888">(scammed!)</span></div>
+                </div>
+            </div>
+            <p style="margin-top: 24px; font-size: 36px; text-align: center;">Just use <span class="accent">PostgreSQL!</span></p>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- MANUAL SPOT CHECKS -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="spot-checks" class="step" data-x="34200" data-y="4800" data-rotate="50" data-scale="0.5">
+            <span class="tag blue">Verification</span>
+            <h3>Manual spot checks: <span class="accent">Can't take my jerb yet!</span></h3>
+            <ul>
+                <li>Some addresses appear <span class="highlight">multiple times</span> as both sender and receiver</li>
+                <li>Cross-referencing with Etherscan to verify</li>
+                <li>The pattern is consistent and unmistakable</li>
+                <li>AI can help, but human verification still matters</li>
+            </ul>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- SOME ARE MYSTERIOUS -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="mysterious" class="step" data-x="31400" data-y="5800" data-rotate="50" data-scale="0.5">
+            <span class="tag orange">Anomalies</span>
+            <h3>Some are mysterious!</h3>
+            <ul>
+                <li>Addresses with prefix <code>0319...</code> and suffix <code>...B86C</code></li>
+                <li>One address (<code>D12D...</code>) had only <span class="highlight">964 transactions</span></li>
+                <li>Low activity but fits the pattern</li>
+            </ul>
+            <img src="assets/analysis-mysterious.png" alt="Mysterious address analysis" class="slide-img" style="max-height: 400px; width: auto;">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- ALICE TO BOB (legitimate) -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="analysis-a2b" class="step" data-x="33200" data-y="6200" data-rotate="50" data-scale="0.4">
+            <span class="tag green">Legitimate</span>
+            <h3><span class="accent">Alice</span> to <span class="blue">Bob</span></h3>
+            <img src="assets/analysis-alice-to-bob.png" alt="Alice to Bob legitimate transaction on Etherscan" class="slide-img">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- MALLORY TO ALICE (bait) -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="analysis-m2a" class="step" data-x="33800" data-y="6600" data-rotate="50" data-scale="0.4">
+            <span class="tag red">Bait</span>
+            <h3><span class="warn">Mallory</span> to <span class="accent">Alice</span></h3>
+            <img src="assets/analysis-mallory-to-alice.png" alt="Mallory to Alice bait transaction on Etherscan" class="slide-img">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- ALICE TO MALLORY (scammed!) -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="analysis-a2m" class="step" data-x="34400" data-y="7000" data-rotate="50" data-scale="0.4">
+            <span class="tag red">Scammed!</span>
+            <h3><span class="accent">Alice</span> to <span class="warn">Mallory</span></h3>
+            <img src="assets/analysis-alice-to-mallory.png" alt="Alice to Mallory scammed transaction on Etherscan" class="slide-img">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- NEXT STEPS -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="next-steps" class="step" data-x="36000" data-y="5800" data-rotate="55">
+            <span class="tag accent">What's next</span>
+            <h2>Next steps</h2>
+            <ul>
+                <li><span class="highlight">Follow the money:</span> trace how Mallory's addresses were funded and where stolen funds end up — if either side touches a KYC exchange, recovery may actually be possible</li>
+                <li><span class="blue">Real-time detection:</span> continuously process new blocks and flag suspicious transactions, feed data to wallets and block explorers so users get warnings <em>before</em> they send</li>
+                <li><span class="accent">Expand to other chains:</span> this attack applies to nearly every blockchain. Layer-2 chains like Binance Smart Chain are especially ripe — lower fees make the scam cheaper to run at scale</li>
+                <li><span class="warn">Hunt the tooling:</span> locate the software and developers that make mass address generation and poisoning possible — understand the supply chain behind the scam</li>
+            </ul>
+        </div>
+
+        <!-- Overview (invisible, for navigation) -->
+        <div id="overview" class="step overview" data-x="18000" data-y="4500" data-scale="34"></div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
+    <script>impress().init();</script>
+</body>
+</html>
