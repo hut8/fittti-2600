@@ -12,7 +12,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #0a0a0a;
+            background: linear-gradient(to right, #000000, #1a1a1a);
             color: #e0e0e0;
             min-height: 100vh;
             overflow: hidden;
@@ -280,6 +280,8 @@
     <div class="fallback-message">
         <p>Your browser <b>doesn't support the features required</b> by impress.js, so a simplified version of this presentation is shown.</p>
     </div>
+
+    <div id="particles-js" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;"></div>
 
     <div id="impress" data-transition-duration="1000" data-width="1400" data-height="900">
 
@@ -733,6 +735,22 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
-    <script>impress().init();</script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        impress().init();
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 120, density: { enable: true, value_area: 900 } },
+                color: { value: '#ffffff' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.3, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.1 } },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 160, color: '#ffffff', opacity: 0.15, width: 1 },
+                move: { enable: true, speed: 0.8, direction: 'none', random: true, out_mode: 'out' }
+            },
+            interactivity: { events: { onhover: { enable: false }, onclick: { enable: false } } },
+            retina_detect: true
+        });
+    </script>
 </body>
 </html>
