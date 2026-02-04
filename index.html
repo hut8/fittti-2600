@@ -72,10 +72,15 @@
             font-weight: 400;
         }
 
-        .accent { color: #00e676; }
-        .warn { color: #ff5252; }
+        .accent { color: #40c4ff; }
+        .warn { color: #ffab40; }
         .highlight { color: #ffab40; }
         .blue { color: #40c4ff; }
+
+        /* Character colors — only for Alice/Bob/Mallory */
+        .alice { color: #00e676; }
+        .mallory { color: #ff5252; }
+        .bob { color: #40c4ff; }
 
         code, .mono {
             font-family: 'Source Code Pro', monospace;
@@ -112,7 +117,7 @@
             content: '▸';
             position: absolute;
             left: 0;
-            color: #00e676;
+            color: #40c4ff;
         }
 
         .big-number {
@@ -124,7 +129,7 @@
         .divider {
             width: 80px;
             height: 4px;
-            background: #00e676;
+            background: #40c4ff;
             margin: 20px 0;
         }
 
@@ -144,8 +149,8 @@
 
         .tag {
             display: inline-block;
-            background: rgba(0,230,118,0.15);
-            color: #00e676;
+            background: rgba(64,196,255,0.15);
+            color: #40c4ff;
             padding: 4px 14px;
             border-radius: 20px;
             font-size: 18px;
@@ -153,6 +158,11 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 16px;
+        }
+
+        .tag.green {
+            background: rgba(0,230,118,0.15);
+            color: #00e676;
         }
 
         .tag.red {
@@ -306,9 +316,9 @@
             <span class="tag blue">Terminology</span>
             <h2>Meet the cast</h2>
             <ul>
-                <li><span class="accent">Alice</span> — the sender, the one initiating communication</li>
-                <li><span class="blue">Bob</span> — the receiver, the intended recipient</li>
-                <li><span class="warn">Mallory</span> — the <em>malicious</em> actor, actively tampering with messages</li>
+                <li><span class="alice">Alice</span> — the sender, the one initiating communication</li>
+                <li><span class="bob">Bob</span> — the receiver, the intended recipient</li>
+                <li><span class="mallory">Mallory</span> — the <em>malicious</em> actor, actively tampering with messages</li>
             </ul>
             <div class="divider"></div>
             <p>These are <span class="highlight">metasyntactic variables</span> — placeholder names used in cryptography and security to describe protocol participants. They come from early academic papers and are codified in <code>RFC 4949</code>.</p>
@@ -324,32 +334,32 @@
             <div class="flow">
                 <div class="flow-step">
                     <span class="flow-num green">1</span>
-                    <div class="flow-node alice"><span class="accent">Alice</span> sends crypto to <span class="blue">Bob</span> — a normal, legitimate transaction</div>
+                    <div class="flow-node alice"><span class="alice">Alice</span> sends crypto to <span class="bob">Bob</span> — a normal, legitimate transaction</div>
                 </div>
                 <div class="flow-arrow">&#8595;</div>
                 <div class="flow-step">
                     <span class="flow-num red">2</span>
-                    <div class="flow-node mallory"><span class="warn">Mallory</span> sees this on the public blockchain and notes Alice's address</div>
+                    <div class="flow-node mallory"><span class="mallory">Mallory</span> sees this on the public blockchain and notes Alice's address</div>
                 </div>
                 <div class="flow-arrow">&#8595;</div>
                 <div class="flow-step">
                     <span class="flow-num red">3</span>
-                    <div class="flow-node mallory"><span class="warn">Mallory</span> generates a <span class="highlight">lookalike address</span> — matching the first &amp; last few characters of Bob's</div>
+                    <div class="flow-node mallory"><span class="mallory">Mallory</span> generates a <span class="highlight">lookalike address</span> — matching the first &amp; last few characters of Bob's</div>
                 </div>
                 <div class="flow-arrow">&#8595;</div>
                 <div class="flow-step">
                     <span class="flow-num red">4</span>
-                    <div class="flow-node mallory"><span class="warn">Mallory</span> sends a <span class="highlight">zero-value tx</span> to Alice from the fake address — poisoning her history</div>
+                    <div class="flow-node mallory"><span class="mallory">Mallory</span> sends a <span class="highlight">zero-value tx</span> to Alice from the fake address — poisoning her history</div>
                 </div>
                 <div class="flow-arrow">&#8595;</div>
                 <div class="flow-step">
                     <span class="flow-num orange">5</span>
-                    <div class="flow-node alice"><span class="accent">Alice</span> later copies an address from her tx history, thinking it's Bob's — <span class="warn">it's Mallory's</span></div>
+                    <div class="flow-node alice"><span class="alice">Alice</span> later copies an address from her tx history, thinking it's Bob's — <span class="mallory">it's Mallory's</span></div>
                 </div>
                 <div class="flow-arrow">&#8595;</div>
                 <div class="flow-step">
                     <span class="flow-num red">6</span>
-                    <div class="flow-node mallory">Funds go to <span class="warn">Mallory</span>. Irreversible. Gone.</div>
+                    <div class="flow-node mallory">Funds go to <span class="mallory">Mallory</span>. Irreversible. Gone.</div>
                 </div>
             </div>
         </div>
@@ -632,17 +642,17 @@
             <div class="flow">
                 <div class="flow-step">
                     <span class="flow-num green">1</span>
-                    <div class="flow-node alice"><span class="accent">Alice</span> → <span class="blue">Bob</span> <span style="color:#888">(legitimate)</span></div>
+                    <div class="flow-node alice"><span class="alice">Alice</span> → <span class="bob">Bob</span> <span style="color:#888">(legitimate)</span></div>
                 </div>
                 <div class="flow-arrow">&#8595;</div>
                 <div class="flow-step">
                     <span class="flow-num red">2</span>
-                    <div class="flow-node mallory"><span class="warn">Mallory</span> → <span class="accent">Alice</span> <span style="color:#888">(bait)</span></div>
+                    <div class="flow-node mallory"><span class="mallory">Mallory</span> → <span class="alice">Alice</span> <span style="color:#888">(bait)</span></div>
                 </div>
                 <div class="flow-arrow">&#8595;</div>
                 <div class="flow-step">
                     <span class="flow-num red">3</span>
-                    <div class="flow-node mallory"><span class="accent">Alice</span> → <span class="warn">Mallory</span> <span style="color:#888">(scammed!)</span></div>
+                    <div class="flow-node mallory"><span class="alice">Alice</span> → <span class="mallory">Mallory</span> <span style="color:#888">(scammed!)</span></div>
                 </div>
             </div>
             <p style="margin-top: 24px; font-size: 36px; text-align: center;">Just use <span class="accent">PostgreSQL!</span></p>
@@ -681,7 +691,7 @@
         <!-- ════════════════════════════════════════ -->
         <div id="analysis-a2b" class="step" data-x="33200" data-y="6200" data-rotate="50" data-scale="0.4">
             <span class="tag green">Legitimate</span>
-            <h3><span class="accent">Alice</span> to <span class="blue">Bob</span></h3>
+            <h3><span class="alice">Alice</span> to <span class="bob">Bob</span></h3>
             <img src="assets/analysis-alice-to-bob.png" alt="Alice to Bob legitimate transaction on Etherscan" class="slide-img">
         </div>
 
@@ -690,7 +700,7 @@
         <!-- ════════════════════════════════════════ -->
         <div id="analysis-m2a" class="step" data-x="33800" data-y="6600" data-rotate="50" data-scale="0.4">
             <span class="tag red">Bait</span>
-            <h3><span class="warn">Mallory</span> to <span class="accent">Alice</span></h3>
+            <h3><span class="mallory">Mallory</span> to <span class="alice">Alice</span></h3>
             <img src="assets/analysis-mallory-to-alice.png" alt="Mallory to Alice bait transaction on Etherscan" class="slide-img">
         </div>
 
@@ -699,7 +709,7 @@
         <!-- ════════════════════════════════════════ -->
         <div id="analysis-a2m" class="step" data-x="34400" data-y="7000" data-rotate="50" data-scale="0.4">
             <span class="tag red">Scammed!</span>
-            <h3><span class="accent">Alice</span> to <span class="warn">Mallory</span></h3>
+            <h3><span class="alice">Alice</span> to <span class="mallory">Mallory</span></h3>
             <img src="assets/analysis-alice-to-mallory.png" alt="Alice to Mallory scammed transaction on Etherscan" class="slide-img">
         </div>
 
