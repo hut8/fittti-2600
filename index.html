@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=1024">
     <title>Fake it 'til they take it</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'JetBrains Mono', monospace;
             background: linear-gradient(to right, #000000, #1a1a1a);
             color: #e0e0e0;
             min-height: 100vh;
@@ -83,7 +83,7 @@
         .bob { color: #40c4ff; }
 
         code, .mono {
-            font-family: 'Source Code Pro', monospace;
+            font-family: 'JetBrains Mono', monospace;
             background: rgba(255,255,255,0.06);
             padding: 2px 8px;
             border-radius: 4px;
@@ -91,7 +91,7 @@
         }
 
         pre {
-            font-family: 'Source Code Pro', monospace;
+            font-family: 'JetBrains Mono', monospace;
             background: rgba(0,0,0,0.5);
             border: 1px solid #333;
             border-radius: 8px;
@@ -422,6 +422,10 @@
             </div>
             <div class="card">
                 <h3><span class="highlight">03</span></h3>
+                <p>Could the scammers potentially be caught and funds recovered?</p>
+            </div>
+            <div class="card">
+                <h3><span class="highlight">04</span></h3>
                 <p>Ethics aside, am I in the wrong line of work?</p>
             </div>
         </div>
@@ -480,6 +484,47 @@
                 <li><span class="warn">Proxy check</span> was taking 33% of the time</li>
                 <li>Kenneth Reitz wrote <code>requests</code> (smart guy)</li>
             </ul>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- PYTHON ETL SCRIPT -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="python-etl" class="step" data-x="13000" data-y="5400" data-rotate="25" data-scale="0.4" style="padding: 30px 40px;">
+            <h3 style="margin-bottom: 8px;">The ETL script</h3>
+            <pre style="font-size: 15px; line-height: 1.3; padding: 16px;"><span style="color:#888">#!/usr/bin/env python3</span>
+<span class="accent">import</span> requests
+
+NODE_URL = <span class="highlight">"http://localhost:8545"</span>
+
+<span class="accent">def</span> <span class="bob">rpc_request</span>(method, params):
+    payload = {
+        <span class="highlight">"jsonrpc"</span>: <span class="highlight">"2.0"</span>,
+        <span class="highlight">"id"</span>: <span class="highlight">1</span>,
+        <span class="highlight">"method"</span>: method,
+        <span class="highlight">"params"</span>: params
+    }
+    resp = requests.post(NODE_URL, json=payload)
+    resp.raise_for_status()
+    <span class="accent">return</span> resp.json()[<span class="highlight">"result"</span>]
+
+<span class="accent">def</span> <span class="bob">main</span>():
+    <span style="color:#888"># Get the latest block number</span>
+    latest_block = <span class="accent">int</span>(rpc_request(<span class="highlight">"eth_blockNumber"</span>, []), <span class="highlight">16</span>)
+    <span class="accent">print</span>(<span class="highlight">f"Latest block: {latest_block}"</span>)
+
+    all_txs = []
+    <span class="accent">for</span> block_num <span class="accent">in</span> <span class="accent">range</span>(latest_block + <span class="highlight">1</span>):
+        hex_bn = <span class="accent">hex</span>(block_num)
+        block = rpc_request(<span class="highlight">"eth_getBlockByNumber"</span>, [hex_bn, <span class="highlight">True</span>])
+        <span class="accent">if</span> block <span class="accent">and</span> block.get(<span class="highlight">"transactions"</span>):
+            all_txs.extend(block[<span class="highlight">"transactions"</span>])
+        <span class="accent">if</span> block_num % <span class="highlight">10000</span> == <span class="highlight">0</span> <span class="accent">and</span> block_num &gt; <span class="highlight">0</span>:
+            <span class="accent">print</span>(<span class="highlight">f"  fetched through block {block_num}"</span>)
+
+    <span class="accent">print</span>(<span class="highlight">f"Exported {len(all_txs)} transactions"</span>)
+
+<span class="accent">if</span> __name__ == <span class="highlight">"__main__"</span>:
+    main()</pre>
         </div>
 
         <!-- ════════════════════════════════════════ -->
@@ -547,7 +592,7 @@
         <!-- ════════════════════════════════════════ -->
         <div id="chatgpt-dude" class="step" data-x="21500" data-y="5600" data-rotate="35" data-scale="1">
             <h3>ChatGPT, dude</h3>
-            <video class="slide-video" controls>
+            <video class="slide-video" controls style="max-height: 650px; width: auto;">
                 <source src="assets/chatgpt-dude.mp4" type="video/mp4">
             </video>
         </div>
@@ -589,7 +634,7 @@
             <ul>
                 <li>Some businesses are paranoid, some managers hate productivity — Cline/Claude isn't for all projects</li>
                 <li>ETH switching from POW to POS = more GPUs available</li>
-                <li>Tried open-source models via ollama — <span class="warn">it did not go well at all</span></li>
+                <li>Tried open-source models via ollama — <span class="warn">it did not go well</span></li>
                 <li>Are there any good ones? How do you deploy them?</li>
             </ul>
             <img src="assets/southpark-localllm.png" alt="Cline Ollama configuration for local LLM" class="slide-img">
@@ -662,7 +707,7 @@
             <ul>
                 <li>ETH addresses are <span class="accent">40 hex characters</span>
                     <ul>
-                        <li>2 hex chars per byte × 20 bytes = 160 bits</li>
+                        <li>1 hex char = 4 bits → 40 × 4 = 160 bits (20 bytes)</li>
                     </ul>
                 </li>
                 <li>People typically only check the <span class="highlight">first and last few characters</span>
@@ -703,55 +748,82 @@
         <!-- MANUAL SPOT CHECKS -->
         <!-- ════════════════════════════════════════ -->
         <div id="spot-checks" class="step" data-x="34200" data-y="4800" data-rotate="50" data-scale="0.5">
-            <span class="tag blue">Verification</span>
-            <h3>Manual spot checks: <span class="accent">Can't take my jerb yet!</span></h3>
+            <span class="tag blue">Specifics</span>
+            <h3>Precise definitions</h3>
             <ul>
-                <li>Some addresses appear <span class="highlight">multiple times</span> as both sender and receiver</li>
-                <li>Cross-referencing with Etherscan to verify</li>
-                <li>The pattern is consistent and unmistakable</li>
-                <li>AI can help, but human verification still matters</li>
+                <li>Each transaction type is defined by its predecessor plus additional criteria</li>
+                <li><span class="alice">Alice</span> → <span class="bob">Bob</span>: legitimate tx with value &gt; 0.05 ETH to a "short address" duplicate</li>
+                <li><span class="mallory">Mallory</span> → <span class="alice">Alice</span>: tiny tx (&lt; 0.01 ETH) from a lookalike address, within 7200 blocks</li>
+                <li><span class="alice">Alice</span> → <span class="mallory">Mallory</span>: Alice sends to Mallory's address after the bait tx</li>
+                <li>Cross-referenced with Etherscan — pattern is consistent and unmistakable</li>
             </ul>
         </div>
 
         <!-- ════════════════════════════════════════ -->
-        <!-- SOME ARE MYSTERIOUS -->
+        <!-- SQL: Alice to Bob -->
         <!-- ════════════════════════════════════════ -->
-        <div id="mysterious" class="step" data-x="31400" data-y="5800" data-rotate="50" data-scale="0.5">
-            <span class="tag orange">Anomalies</span>
-            <h3>Some are mysterious!</h3>
-            <ul>
-                <li>Addresses with prefix <code>0319...</code> and suffix <code>...B86C</code></li>
-                <li>One address (<code>D12D...</code>) had only <span class="highlight">964 transactions</span></li>
-                <li>Low activity but fits the pattern</li>
-            </ul>
-            <img src="assets/analysis-mysterious.png" alt="Mysterious address analysis" class="slide-img" style="max-height: 400px; width: auto;">
+        <div id="sql-alice-to-bob" class="step" data-x="34800" data-y="5400" data-rotate="50" data-scale="0.4">
+            <h3><span class="alice">Alice</span> → <span class="bob">Bob</span> <span style="color:#888">(legitimate)</span></h3>
+            <pre><span class="accent">CREATE MATERIALIZED VIEW</span> ethereum_transactions_alice_to_bob <span class="accent">AS</span>
+ <span class="accent">SELECT DISTINCT</span> t.hash <span class="accent">AS</span> transaction_hash,
+    t.from_address <span class="accent">AS</span> alice_address,
+    t.to_address <span class="accent">AS</span> bob_address,
+    t.to_address_32 <span class="accent">AS</span> bob_short_32,
+    t.value, t.block_number
+ <span class="accent">FROM</span> ethereum_transactions t
+ <span class="accent">JOIN</span> short_addresses sa
+   <span class="accent">ON</span> t.to_address_32 = sa.address_short_32_int
+ <span class="accent">WHERE</span> sa.address_count &gt; <span class="highlight">1</span>
+   <span class="accent">AND</span> t.value &gt; <span class="highlight">0.05</span> * <span style="color:#888">'1000000000000000000'</span>
+   <span class="accent">AND</span> t.to_address <span class="accent">IS NOT NULL</span>;</pre>
         </div>
 
         <!-- ════════════════════════════════════════ -->
-        <!-- ALICE TO BOB (legitimate) -->
+        <!-- SQL: Mallory to Alice -->
         <!-- ════════════════════════════════════════ -->
-        <div id="analysis-a2b" class="step" data-x="33200" data-y="6200" data-rotate="50" data-scale="0.4">
-            <span class="tag green">Legitimate</span>
-            <h3><span class="alice">Alice</span> to <span class="bob">Bob</span></h3>
-            <img src="assets/analysis-alice-to-bob.png" alt="Alice to Bob legitimate transaction on Etherscan" class="slide-img">
+        <div id="sql-mallory-to-alice" class="step" data-x="35400" data-y="5800" data-rotate="50" data-scale="0.4">
+            <h3><span class="mallory">Mallory</span> → <span class="alice">Alice</span> <span style="color:#888">(bait)</span></h3>
+            <pre><span class="accent">CREATE MATERIALIZED VIEW</span> ethereum_transactions_mallory_to_alice <span class="accent">AS</span>
+ <span class="accent">WITH</span> ignore_addresses <span class="accent">AS</span> (
+   <span class="accent">SELECT</span> address_raw <span class="accent">AS</span> address
+   <span class="accent">FROM</span> ethereum_addresses
+   <span class="accent">WHERE</span> is_phishing = <span class="highlight">false</span>
+ )
+ <span class="accent">SELECT DISTINCT</span> t.hash, t.block_number,
+    t.from_address <span class="accent">AS</span> mallory_address,
+    t.to_address <span class="accent">AS</span> alice_address,
+    t.value, atb.bob_short_32
+ <span class="accent">FROM</span> ethereum_transactions t
+ <span class="accent">JOIN</span> ethereum_transactions_alice_to_bob atb
+   <span class="accent">ON</span> t.to_address = atb.alice_address
+   <span class="accent">AND</span> t.from_address_32 = atb.bob_short_32
+   <span class="accent">AND</span> t.from_address &lt;&gt; atb.bob_address
+   <span class="accent">AND</span> t.value &lt; <span class="highlight">0.01</span> * <span style="color:#888">'1000000000000000000'</span>
+   <span class="accent">AND</span> t.block_number &gt;= atb.block_number
+   <span class="accent">AND</span> t.block_number &lt;= atb.block_number + <span class="highlight">7200</span>
+ <span class="accent">WHERE NOT EXISTS</span> (
+   <span class="accent">SELECT</span> <span class="highlight">1</span> <span class="accent">FROM</span> ignore_addresses ia
+   <span class="accent">WHERE</span> t.from_address = ia.address
+      <span class="accent">OR</span> t.to_address = ia.address
+ );</pre>
         </div>
 
         <!-- ════════════════════════════════════════ -->
-        <!-- MALLORY TO ALICE (bait) -->
+        <!-- SQL: Alice to Mallory -->
         <!-- ════════════════════════════════════════ -->
-        <div id="analysis-m2a" class="step" data-x="33800" data-y="6600" data-rotate="50" data-scale="0.4">
-            <span class="tag red">Bait</span>
-            <h3><span class="mallory">Mallory</span> to <span class="alice">Alice</span></h3>
-            <img src="assets/analysis-mallory-to-alice.png" alt="Mallory to Alice bait transaction on Etherscan" class="slide-img">
-        </div>
-
-        <!-- ════════════════════════════════════════ -->
-        <!-- ALICE TO MALLORY (scammed!) -->
-        <!-- ════════════════════════════════════════ -->
-        <div id="analysis-a2m" class="step" data-x="34400" data-y="7000" data-rotate="50" data-scale="0.4">
-            <span class="tag red">Scammed!</span>
-            <h3><span class="alice">Alice</span> to <span class="mallory">Mallory</span></h3>
-            <img src="assets/analysis-alice-to-mallory.png" alt="Alice to Mallory scammed transaction on Etherscan" class="slide-img">
+        <div id="sql-alice-to-mallory" class="step" data-x="36000" data-y="6200" data-rotate="50" data-scale="0.4">
+            <h3><span class="alice">Alice</span> → <span class="mallory">Mallory</span> <span style="color:#888">(scammed!)</span></h3>
+            <pre><span class="accent">CREATE MATERIALIZED VIEW</span> ethereum_transactions_alice_to_mallory <span class="accent">AS</span>
+ <span class="accent">SELECT DISTINCT</span> t.hash <span class="accent">AS</span> transaction_hash,
+    t.from_address <span class="accent">AS</span> alice_address,
+    t.to_address <span class="accent">AS</span> mallory_address,
+    t.to_address_32 <span class="accent">AS</span> bob_mallory_short_32,
+    t.value, t.block_number
+ <span class="accent">FROM</span> ethereum_transactions t
+ <span class="accent">JOIN</span> ethereum_transactions_mallory_to_alice mta
+   <span class="accent">ON</span> t.from_address = mta.alice_address
+   <span class="accent">AND</span> t.to_address = mta.mallory_address
+   <span class="accent">AND</span> t.block_number &gt; mta.transaction_block_number;</pre>
         </div>
 
         <!-- ════════════════════════════════════════ -->
@@ -769,7 +841,7 @@
         </div>
 
         <!-- Overview (invisible, for navigation) -->
-        <div id="overview" class="step overview" data-x="18000" data-y="4500" data-scale="34"></div>
+        <div id="overview" class="step overview" data-x="19000" data-y="4500" data-scale="36"></div>
 
     </div>
 
