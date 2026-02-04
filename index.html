@@ -367,6 +367,46 @@
         </div>
 
         <!-- ════════════════════════════════════════ -->
+        <!-- VENMO ANALOGY -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="venmo-analogy" class="step" data-x="8600" data-y="2800" data-rotate="17">
+            <span class="tag orange">Analogy</span>
+            <h2>Venmo analogy</h2>
+            <p style="margin-bottom: 16px;">For the non-crypto folks — the same scam works on Venmo:</p>
+            <div class="flow">
+                <div class="flow-step">
+                    <span class="flow-num green">1</span>
+                    <div class="flow-node alice"><span class="alice">Alice</span> sends <span class="bob">Bob</span> (her landlord) $1,000 every month. Venmo makes transactions <span class="warn">public by default</span> — just like the blockchain.</div>
+                </div>
+                <div class="flow-arrow">&#8595;</div>
+                <div class="flow-step">
+                    <span class="flow-num red">2</span>
+                    <div class="flow-node mallory"><span class="mallory">Mallory</span> sees these repeated payments and notes Bob's handle: <code>@bobthelandlord2600</code></div>
+                </div>
+                <div class="flow-arrow">&#8595;</div>
+                <div class="flow-step">
+                    <span class="flow-num red">3</span>
+                    <div class="flow-node mallory"><span class="mallory">Mallory</span> creates <code>@bobthelandlord2600<span class="mallory">0</span></code> with the same avatar as Bob</div>
+                </div>
+                <div class="flow-arrow">&#8595;</div>
+                <div class="flow-step">
+                    <span class="flow-num red">4</span>
+                    <div class="flow-node mallory"><span class="mallory">Mallory</span> sends <span class="alice">Alice</span> $0.01 from the fake account</div>
+                </div>
+                <div class="flow-arrow">&#8595;</div>
+                <div class="flow-step">
+                    <span class="flow-num orange">5</span>
+                    <div class="flow-node alice"><span class="alice">Alice</span> types <code>bobt...</code> — <code>@bobthelandlord2600<span class="mallory">0</span></code> appears first (most recent transaction).</div>
+                </div>
+                <div class="flow-arrow">&#8595;</div>
+                <div class="flow-step">
+                    <span class="flow-num red">6</span>
+                    <div class="flow-node mallory"><span class="alice">Alice</span> sends $1,000 to <span class="mallory">Mallory</span>.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
         <!-- QUESTIONS -->
         <!-- ════════════════════════════════════════ -->
         <div id="questions" class="step" data-x="10000" data-y="3200" data-rotate="20">
