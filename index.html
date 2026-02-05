@@ -892,9 +892,133 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         </div>
 
         <!-- ════════════════════════════════════════ -->
+        <!-- SCAM STATS - LAST 365 DAYS -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="scam-stats-365" class="step" data-x="-10000" data-y="-8000" data-z="-62000" data-rotate-x="46" data-rotate-z="245" data-rotate-order="zxy" data-scale="1.2" style="width: 1400px;">
+            <span class="tag red">Results</span>
+            <h2>Last 365 days</h2>
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 22px;">
+                <tr style="border-bottom: 1px solid #444;">
+                    <th style="padding: 8px 12px; color: #666; text-align: left; font-weight: normal; border-right: 1px solid #333;"></th>
+                    <th style="padding: 8px 12px; color: #666; text-align: right; font-weight: normal; border-right: 1px solid #333;">ETH</th>
+                    <th style="padding: 8px 12px; color: #666; text-align: right; font-weight: normal; border-right: 1px solid #333;">USD (@&nbsp;tx)</th>
+                    <th style="padding: 8px 12px; color: #666; text-align: right; font-weight: normal; border-right: 1px solid #333;">USD (@&nbsp;$2k)</th>
+                    <th style="padding: 8px 12px; color: #666; text-align: right; font-weight: normal; border-right: 1px solid #333;">Transactions</th>
+                    <th style="padding: 8px 12px; color: #666; text-align: right; font-weight: normal;">Parties</th>
+                </tr>
+                <tr style="border-bottom: 1px solid #333;">
+                    <td style="padding: 12px 12px; color: #888; border-right: 1px solid #333;">STOLEN</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;"><span class="highlight">590.27&nbsp;ETH</span></td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;"><span class="highlight">$1,947,208</span></td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;"><span class="highlight">$1,180,536</span></td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;"><span class="highlight">461&nbsp;tx</span></td>
+                    <td style="padding: 12px 12px; text-align: right;"><span class="highlight">408&nbsp;victims</span></td>
+                </tr>
+                <tr style="border-bottom: 1px solid #333;">
+                    <td style="padding: 12px 12px; color: #888; border-right: 1px solid #333;">BAIT COST</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;">4.83&nbsp;ETH</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;">$12,992</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;">$9,658</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;">7,416,543&nbsp;tx</td>
+                    <td style="padding: 12px 12px; text-align: right;">1,247,402&nbsp;targets</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #333;">
+                    <td style="padding: 12px 12px; color: #888; border-right: 1px solid #333;">TX FEES</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;">68.49&nbsp;ETH</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;">$179,763</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;">$136,980</td>
+                    <td style="padding: 12px 12px; border-right: 1px solid #333;"></td>
+                    <td style="padding: 12px 12px;"></td>
+                </tr>
+                <tr style="border-bottom: 1px solid #333;">
+                    <td style="padding: 12px 12px; color: #888; border-right: 1px solid #333;">NET PROFIT</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;"><span class="alice">+516.95&nbsp;ETH</span></td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;"><span class="alice">+$1,754,453</span></td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;"><span class="alice">+$1,033,898</span></td>
+                    <td style="padding: 12px 12px; border-right: 1px solid #333;"></td>
+                    <td style="padding: 12px 12px;"></td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px 12px; color: #888; border-right: 1px solid #333;">SUCCESS RATE</td>
+                    <td colspan="5" style="padding: 12px 12px; text-align: right;"><span class="accent">&lt;0.01%</span> — 461 / 7,416,543 bait tx</td>
+                </tr>
+            </table>
+            <p style="margin-top: 12px; font-size: 18px; color: #666;">USD values derived from CoinMarketCap exchange rate at time of each transaction</p>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- SCAM STATS - ALL TIME -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="scam-stats" class="step" data-x="-12000" data-y="-10000" data-z="-68000" data-rotate-x="48" data-rotate-z="250" data-rotate-order="zxy" data-scale="1.2" style="width: 1400px;">
+            <span class="tag red">Results</span>
+            <h2>All time</h2>
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 22px;">
+                <tr style="border-bottom: 1px solid #444;">
+                    <th style="padding: 8px 12px; color: #666; text-align: left; font-weight: normal; border-right: 1px solid #333;"></th>
+                    <th style="padding: 8px 12px; color: #666; text-align: right; font-weight: normal; border-right: 1px solid #333;">ETH</th>
+                    <th style="padding: 8px 12px; color: #666; text-align: right; font-weight: normal; border-right: 1px solid #333;">USD (@&nbsp;tx)</th>
+                    <th style="padding: 8px 12px; color: #666; text-align: right; font-weight: normal; border-right: 1px solid #333;">USD (@&nbsp;$2k)</th>
+                    <th style="padding: 8px 12px; color: #666; text-align: right; font-weight: normal; border-right: 1px solid #333;">Transactions</th>
+                    <th style="padding: 8px 12px; color: #666; text-align: right; font-weight: normal;">Parties</th>
+                </tr>
+                <tr style="border-bottom: 1px solid #333;">
+                    <td style="padding: 12px 12px; color: #888; border-right: 1px solid #333;">STOLEN</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;"><span class="highlight">31,917.5&nbsp;ETH</span></td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;"><span class="highlight">$77,164,227</span></td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;"><span class="highlight">$63,835,000</span></td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;"><span class="highlight">772&nbsp;tx</span></td>
+                    <td style="padding: 12px 12px; text-align: right;"><span class="highlight">564&nbsp;victims</span></td>
+                </tr>
+                <tr style="border-bottom: 1px solid #333;">
+                    <td style="padding: 12px 12px; color: #888; border-right: 1px solid #333;">BAIT COST</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;">13.78&nbsp;ETH</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;">$38,940</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;">$27,560</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;">8,281,104&nbsp;tx</td>
+                    <td style="padding: 12px 12px; text-align: right;">1,436,369&nbsp;targets</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #333;">
+                    <td style="padding: 12px 12px; color: #888; border-right: 1px solid #333;">TX FEES</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;">305.9&nbsp;ETH</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;">$881,523</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;">$611,800</td>
+                    <td style="padding: 12px 12px; border-right: 1px solid #333;"></td>
+                    <td style="padding: 12px 12px;"></td>
+                </tr>
+                <tr style="border-bottom: 1px solid #333;">
+                    <td style="padding: 12px 12px; color: #888; border-right: 1px solid #333;">NET PROFIT</td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;"><span class="alice">+31,597.8&nbsp;ETH</span></td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;"><span class="alice">+$76,243,764</span></td>
+                    <td style="padding: 12px 12px; text-align: right; border-right: 1px solid #333;"><span class="alice">+$63,195,640</span></td>
+                    <td style="padding: 12px 12px; border-right: 1px solid #333;"></td>
+                    <td style="padding: 12px 12px;"></td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px 12px; color: #888; border-right: 1px solid #333;">SUCCESS RATE</td>
+                    <td colspan="5" style="padding: 12px 12px; text-align: right;"><span class="accent">&lt;0.01%</span> — 772 / 8,281,104 bait tx</td>
+                </tr>
+            </table>
+            <p style="margin-top: 12px; font-size: 18px; color: #666;">USD values derived from CoinMarketCap exchange rate at time of each transaction</p>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- SUCCESS RATE COMPARISON -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="success-rate-comparison" class="step" data-x="-14000" data-y="-12000" data-z="-74000" data-rotate-x="49" data-rotate-z="255" data-rotate-order="zxy" data-scale="1.2">
+            <span class="tag orange">Perspective</span>
+            <h2>How unlikely is 0.0093%?</h2>
+            <p style="font-size: 48px; margin: 40px 0;"><span class="accent">1 in 10,700</span></p>
+            <ul>
+                <li>Similar to guessing a <span class="highlight">4-digit PIN</span> on the first try (1 in 10,000)</li>
+                <li>Similar to getting <span class="highlight">struck by lightning</span> in a given year (1 in 15,000)</li>
+            </ul>
+            <p style="margin-top: 40px; color: #888;">Yet with 8 million attempts, 772 people still got scammed.</p>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
         <!-- NEXT STEPS -->
         <!-- ════════════════════════════════════════ -->
-        <div id="next-steps" class="step" data-x="-9200" data-y="-7200" data-z="-59200" data-rotate-x="50" data-rotate-z="260" data-rotate-order="zxy" data-scale="1.5">
+        <div id="next-steps" class="step" data-x="-16000" data-y="-14000" data-z="-80000" data-rotate-x="50" data-rotate-z="260" data-rotate-order="zxy" data-scale="1.5">
             <span class="tag accent">What's next</span>
             <h2>Next steps</h2>
             <ul>
@@ -906,7 +1030,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- NEXT STEPS (AMBITIOUS) -->
         <!-- ════════════════════════════════════════ -->
-        <div id="next-steps-ambitious" class="step" data-x="-9600" data-y="-7600" data-z="-60800" data-rotate-x="55" data-rotate-z="280" data-rotate-order="zxy" data-scale="1.5">
+        <div id="next-steps-ambitious" class="step" data-x="-18000" data-y="-16000" data-z="-86000" data-rotate-x="55" data-rotate-z="280" data-rotate-order="zxy" data-scale="1.5">
             <span class="tag accent">What's next</span>
             <h2>Next steps <span class="subtitle">(for the ambitious)</span></h2>
             <ul>
@@ -919,7 +1043,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- SCAM EXPLORER -->
         <!-- ════════════════════════════════════════ -->
-        <div id="scam-explorer" class="step" data-x="-10000" data-y="-8000" data-z="-62000" data-rotate-x="55" data-rotate-z="290" data-rotate-order="zxy" data-scale="1.5">
+        <div id="scam-explorer" class="step" data-x="-20000" data-y="-18000" data-z="-92000" data-rotate-x="55" data-rotate-z="290" data-rotate-order="zxy" data-scale="1.5">
             <span class="tag red">Live Demo</span>
             <h2>Scam explorer</h2>
             <p style="margin-bottom: 16px;"><a href="https://diethyl.hut8.tools" style="color: #40c4ff;">diethyl.hut8.tools</a></p>
@@ -929,7 +1053,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- CONTACT -->
         <!-- ════════════════════════════════════════ -->
-        <div id="contact" class="step" data-x="-10400" data-y="-8400" data-z="-63200" data-rotate-x="55" data-rotate-z="300" data-rotate-order="zxy" data-scale="1.5">
+        <div id="contact" class="step" data-x="-22000" data-y="-20000" data-z="-98000" data-rotate-x="55" data-rotate-z="300" data-rotate-order="zxy" data-scale="1.5">
             <span class="tag green">Contact</span>
             <h2>Liam Bowen</h2>
             <div class="divider"></div>
@@ -942,7 +1066,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         </div>
 
         <!-- Overview (invisible, for navigation) -->
-        <div id="overview" class="step overview" data-x="0" data-y="-2000" data-z="-30400" data-rotate-x="10" data-scale="90"></div>
+        <div id="overview" class="step overview" data-x="-8000" data-y="-8000" data-z="-50000" data-rotate-x="10" data-scale="140"></div>
 
     </div>
 
