@@ -451,6 +451,35 @@
         </div>
 
         <!-- ════════════════════════════════════════ -->
+        <!-- HIGH LEVEL PLAN -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="high-level-plan" class="step dense" data-x="-1800" data-y="1800" data-z="-14000" data-rotate-x="30" data-rotate-y="0" data-rotate-z="210" data-rotate-order="zxy" data-scale="1.5">
+            <span class="tag">Plan of Attack</span>
+            <h2>High level plan</h2>
+            <ul>
+                <li>Extract all blockchain data into a database
+                    <ul>
+                        <li><span class="accent">Erigon</span> as the local Ethereum node (tried geth — slow; reth — corruption during sync)</li>
+                        <li><span class="blue">Hetzner</span> server: 64 GB ECC RAM, 4 GHz / 32 cores, 8 TB NVMe, gigabit ethernet</li>
+                        <li>Rust ETL app (<code>diethyl-etl</code>) to import into PostgreSQL — took over a week</li>
+                    </ul>
+                </li>
+                <li>PostgreSQL queries to identify scam transactions, parties, and aggregate figures</li>
+                <li>Web app (<span class="accent">Rust</span> backend + <span class="blue">Svelte</span> frontend) for visualization and spot checks</li>
+                <li>Rust app running on <span class="highlight">CPU + GPU</span> to generate colliding addresses at high speed</li>
+            </ul>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- VERY INTERESTING -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="very-interesting" class="step" data-x="-1200" data-y="1200" data-z="-18000" data-rotate-x="20" data-rotate-y="0" data-rotate-z="210" data-rotate-order="zxy" data-scale="2">
+            <video id="very-interesting-video" class="slide-video" style="max-height: 800px; width: auto;">
+                <source src="assets/very-interesting.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
         <!-- PYTHON — parent (zoomed out) -->
         <!-- ════════════════════════════════════════ -->
         <div id="python" class="step" data-x="0" data-y="0" data-z="-28000" data-rotate-y="0" data-rotate-order="yxz" data-scale="3">
@@ -895,7 +924,15 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
     <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
-        impress().init();
+        var api = impress();
+        api.init();
+
+        var vid = document.getElementById('very-interesting-video');
+        vid.addEventListener('ended', function() { api.next(); });
+        document.getElementById('very-interesting').addEventListener('impress:stepenter', function() {
+            vid.currentTime = 0;
+            vid.play();
+        });
         particlesJS('particles-js', {
             particles: {
                 number: { value: 120, density: { enable: true, value_area: 900 } },
