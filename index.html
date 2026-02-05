@@ -288,8 +288,8 @@
         <!-- ════════════════════════════════════════ -->
         <!-- TITLE -->
         <!-- ════════════════════════════════════════ -->
-        <div id="title" class="step" data-x="0" data-y="0" data-scale="4">
-            <h1><span class="accent">Fake it</span> 'til they <span class="warn">take</span> it</h1>
+        <div id="title" class="step" data-x="0" data-y="0" data-z="0" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" data-rotate-order="zxy" data-scale="3">
+            <h1 style="font-size: 58px; white-space: nowrap;"><span class="accent">Fake it</span> 'til they <span class="warn">take</span> it</h1>
             <div class="divider"></div>
             <p class="subtitle">exposing the poisoned address playbook</p>
         </div>
@@ -297,7 +297,7 @@
         <!-- ════════════════════════════════════════ -->
         <!-- BACKGROUND -->
         <!-- ════════════════════════════════════════ -->
-        <div id="background" class="step" data-x="2400" data-y="800" data-rotate="5">
+        <div id="background" class="step" data-x="1200" data-y="800" data-z="-1400" data-rotate-x="10" data-rotate-y="0" data-rotate-z="30" data-rotate-order="zxy" data-scale="1.5">
             <span class="tag">Background</span>
             <h2>How I fell down this rabbit hole</h2>
             <ul>
@@ -312,9 +312,18 @@
         </div>
 
         <!-- ════════════════════════════════════════ -->
+        <!-- RABBIT HOLE SCREENSHOT -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="rabbit-hole" class="step" data-x="1500" data-y="1300" data-z="-2100" data-rotate-x="12" data-rotate-y="0" data-rotate-z="45" data-rotate-order="zxy" data-scale="1.5">
+            <span class="tag orange">Investigation</span>
+            <h2>How deep does the rabbit hole go?</h2>
+            <img src="assets/etherscan-rabbit-hole.png" alt="Etherscan transaction history showing the poisoned address pattern" class="slide-img">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
         <!-- ALICE / BOB / MALLORY -->
         <!-- ════════════════════════════════════════ -->
-        <div id="alice-bob" class="step" data-x="4800" data-y="1600" data-rotate="10">
+        <div id="alice-bob" class="step" data-x="1800" data-y="1800" data-z="-2800" data-rotate-x="15" data-rotate-y="0" data-rotate-z="60" data-rotate-order="zxy" data-scale="1.5">
             <span class="tag blue">Terminology</span>
             <h2>Meet the cast</h2>
             <ul>
@@ -330,7 +339,7 @@
         <!-- ════════════════════════════════════════ -->
         <!-- SCAM FLOWCHART -->
         <!-- ════════════════════════════════════════ -->
-        <div id="flowchart" class="step" data-x="7200" data-y="2400" data-rotate="15" data-scale="2">
+        <div id="flowchart" class="step" data-x="1600" data-y="2800" data-z="-4200" data-rotate-x="20" data-rotate-y="0" data-rotate-z="90" data-rotate-order="zxy" data-scale="2">
             <span class="tag red">The Attack</span>
             <h2>The poisoned address playbook</h2>
             <div class="flow">
@@ -356,7 +365,7 @@
                 <div class="flow-arrow">&#8595;</div>
                 <div class="flow-step">
                     <span class="flow-num orange">5</span>
-                    <div class="flow-node alice"><span class="alice">Alice</span> later copies an address from her tx history, thinking it's Bob's — <span class="mallory">it's Mallory's</span></div>
+                    <div class="flow-node alice"><span class="alice">Alice</span> tries to select <span class="bob">Bob's</span> address from an autocomplete that ranks <span class="mallory">Mallory</span> higher due to recency, then transfers currency</div>
                 </div>
                 <div class="flow-arrow">&#8595;</div>
                 <div class="flow-step">
@@ -369,7 +378,7 @@
         <!-- ════════════════════════════════════════ -->
         <!-- VENMO ANALOGY -->
         <!-- ════════════════════════════════════════ -->
-        <div id="venmo-analogy" class="step" data-x="8600" data-y="2800" data-rotate="17">
+        <div id="venmo-analogy" class="step" data-x="400" data-y="3400" data-z="-5600" data-rotate-x="25" data-rotate-y="0" data-rotate-z="120" data-rotate-order="zxy" data-scale="2">
             <span class="tag orange">Venmo analogy</span>
             <h2>The same scam could work on Venmo</h2>
             <div class="flow">
@@ -406,34 +415,45 @@
         </div>
 
         <!-- ════════════════════════════════════════ -->
+        <!-- AND IT'S GONE -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="and-its-gone" class="step" data-x="-4000" data-y="8000" data-z="-14000" data-rotate-x="30" data-rotate-y="0" data-rotate-z="150" data-rotate-order="zxy" data-scale="1.5" style="padding: 0; display: flex; align-items: center; justify-content: center;">
+            <img src="assets/and-its-gone.jpg" alt="And it's gone" class="slide-img" style="max-width: 100%; max-height: 850px; margin: 0; object-fit: contain;">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- UI/UX -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="ui-ux" class="step" data-x="-1800" data-y="3200" data-z="-8400" data-rotate-x="35" data-rotate-y="0" data-rotate-z="180" data-rotate-order="zxy" data-scale="1.5">
+            <span class="tag orange">UI/UX</span>
+            <h2>Good UI/UX sometimes fails</h2>
+            <ul>
+                <li><span class="warn">Don't overwhelm the user with useless data</span> — nobody actually checks all 40 hex digits. Most wallets don't display them, and even blockchain explorers encourage glancing at the first and last few.</li>
+            </ul>
+            <img src="assets/etherscan-address.png" alt="Etherscan showing truncated address" class="slide-img" style="max-height: 250px; width: auto;">
+            <ul>
+                <li><span class="accent">Optimize for the common case</span> — users are far more likely to transact with a counterparty they've dealt with before than a stranger. "Frecency" makes choices convenient — which makes it easy for <span class="mallory">Mallory</span> to jump to the top of the autocomplete.</li>
+            </ul>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
         <!-- QUESTIONS -->
         <!-- ════════════════════════════════════════ -->
-        <div id="questions" class="step" data-x="10000" data-y="3200" data-rotate="20">
+        <div id="questions" class="step" data-x="-2400" data-y="2400" data-z="-9800" data-rotate-x="40" data-rotate-y="0" data-rotate-z="210" data-rotate-order="zxy" data-scale="1.5">
             <span class="tag orange">Investigation</span>
             <h2>Questions I had</h2>
-            <div class="card">
-                <h3><span class="highlight">01</span></h3>
-                <p>How prevalent is this scam?</p>
-                <p>Can it be easily identified?</p>
-            </div>
-            <div class="card">
-                <h3><span class="highlight">02</span></h3>
-                <p>What is the scammers' revenue, expenses, and profit?</p>
-            </div>
-            <div class="card">
-                <h3><span class="highlight">03</span></h3>
-                <p>Could the scammers potentially be caught and funds recovered?</p>
-            </div>
-            <div class="card">
-                <h3><span class="highlight">04</span></h3>
-                <p>Ethics aside, am I in the wrong line of work?</p>
-            </div>
+            <ul>
+                <li><span class="highlight">01</span> — How prevalent is this scam? Can it be easily identified?</li>
+                <li><span class="highlight">02</span> — What is the scammers' revenue, expenses, and profit?</li>
+                <li><span class="highlight">03</span> — Could the scammers potentially be caught and funds recovered?</li>
+                <li><span class="highlight">04</span> — Ethics aside, am I in the wrong line of work?</li>
+            </ul>
         </div>
 
         <!-- ════════════════════════════════════════ -->
         <!-- PYTHON — parent (zoomed out) -->
         <!-- ════════════════════════════════════════ -->
-        <div id="python" class="step" data-x="13500" data-y="4200" data-rotate="25" data-scale="3">
+        <div id="python" class="step" data-x="0" data-y="0" data-z="-28000" data-rotate-y="0" data-rotate-order="yxz" data-scale="3">
             <span class="tag">Broadly Relevant Topic #1</span>
             <h2>Python</h2>
             <ul>
@@ -458,7 +478,7 @@
         <!-- ════════════════════════════════════════ -->
         <!-- PYTHON PERF — nested child 1 (zoom in) -->
         <!-- ════════════════════════════════════════ -->
-        <div id="python-perf" class="step" data-x="11700" data-y="4200" data-rotate="25" data-scale="1">
+        <div id="python-perf" class="step" data-x="0" data-y="-1600" data-z="-34000" data-rotate-y="0" data-rotate-order="yxz" data-scale="1">
             <span class="tag red">Python Performance</span>
             <h2>It's bad</h2>
             <ul>
@@ -475,7 +495,7 @@
         <!-- WHY SLOW — nested child 2 (zoom in) -->
         <!-- contains two further zoom-ins -->
         <!-- ════════════════════════════════════════ -->
-        <div id="why-slow" class="step" data-x="14400" data-y="5400" data-rotate="25" data-scale="1">
+        <div id="why-slow" class="step" data-x="0" data-y="1600" data-z="-34000" data-rotate-y="0" data-rotate-order="yxz" data-scale="1">
             <span class="tag orange">Why slow? Why CPU bound?</span>
             <h2>Profiling results</h2>
             <ul>
@@ -489,7 +509,7 @@
         <!-- ════════════════════════════════════════ -->
         <!-- PYTHON ETL SCRIPT -->
         <!-- ════════════════════════════════════════ -->
-        <div id="python-etl" class="step" data-x="13000" data-y="5400" data-rotate="25" data-scale="0.4" style="padding: 30px 40px;">
+        <div id="python-etl" class="step" data-x="-3600" data-y="0" data-z="-38000" data-rotate-y="0" data-rotate-order="yxz" data-scale="0.5" style="padding: 30px 40px;">
             <h3 style="margin-bottom: 8px;">The ETL script</h3>
             <pre style="font-size: 15px; line-height: 1.3; padding: 16px;"><span style="color:#888">#!/usr/bin/env python3</span>
 <span class="accent">import</span> requests
@@ -530,7 +550,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- PROFILING DETAIL — grandchild 1 (deep zoom) -->
         <!-- ════════════════════════════════════════ -->
-        <div id="profiling-detail" class="step" data-x="13600" data-y="5900" data-rotate="25" data-scale="0.4">
+        <div id="profiling-detail" class="step" data-x="0" data-y="-2000" data-z="-39000" data-rotate-y="0" data-rotate-order="yxz" data-scale="0.5">
             <h3>cProfile output</h3>
             <img src="assets/cprofile-output.png" alt="cProfile profiling output" class="slide-img">
         </div>
@@ -538,7 +558,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- THE SOLUTION — grandchild 2 (deep zoom) -->
         <!-- ════════════════════════════════════════ -->
-        <div id="the-solution" class="step" data-x="15200" data-y="5900" data-rotate="25" data-scale="0.4">
+        <div id="the-solution" class="step" data-x="0" data-y="2000" data-z="-39000" data-rotate-y="0" data-rotate-order="yxz" data-scale="0.5">
             <span class="tag accent">The solution!</span>
             <img src="assets/solution-screenshot.png" alt="The solution - trust_env = False" class="slide-img">
         </div>
@@ -546,7 +566,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- RUST — parent (zoomed out) -->
         <!-- ════════════════════════════════════════ -->
-        <div id="rust" class="step" data-x="17500" data-y="4200" data-rotate="30" data-scale="3">
+        <div id="rust" class="step" data-x="11416" data-y="0" data-z="-19708" data-rotate-y="72" data-rotate-order="yxz" data-scale="3">
             <span class="tag">Broadly Relevant Topic #2</span>
             <h2>Rust</h2>
             <ul>
@@ -563,7 +583,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- RUST CODE — nested child (zoom in) -->
         <!-- ════════════════════════════════════════ -->
-        <div id="rust-sqlx" class="step" data-x="18800" data-y="5400" data-rotate="30" data-scale="0.5">
+        <div id="rust-sqlx" class="step" data-x="7992" data-y="0" data-z="-23800" data-rotate-y="72" data-rotate-order="yxz" data-scale="0.6">
             <h3>Compile-time SQL checking with <code class="accent">sqlx::query!</code></h3>
             <img src="assets/rust-detail-screenshot.png" alt="VS Code showing sqlx compile-time SQL checking in Rust" class="slide-img">
         </div>
@@ -571,7 +591,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- SOUTH PARK / VIBE CODING — parent -->
         <!-- ════════════════════════════════════════ -->
-        <div id="vibe-coding" class="step" data-x="21500" data-y="4200" data-rotate="35" data-scale="3">
+        <div id="vibe-coding" class="step" data-x="7054" data-y="0" data-z="-6292" data-rotate-y="144" data-rotate-order="yxz" data-scale="3">
             <span class="tag">Broadly Relevant Topic #3</span>
             <h2>They took our jerb! <span class="subtitle">(aka "Vibe Coding")</span></h2>
             <p style="margin-bottom: 16px;">Goobacks (S8E7 on 2004-04-28) and... Deep Learning (S26E4 on 2023-03-08)</p>
@@ -580,7 +600,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- VIDEO 1: Took our jobs -->
         <!-- ════════════════════════════════════════ -->
-        <div id="took-our-jobs" class="step" data-x="19800" data-y="4800" data-rotate="35" data-scale="1">
+        <div id="took-our-jobs" class="step" data-x="2936" data-y="-1600" data-z="1120" data-rotate-y="144" data-rotate-order="yxz" data-scale="1.2">
             <h3>They took our jobs!</h3>
             <video class="slide-video" controls>
                 <source src="assets/tookourjobs.mp4" type="video/mp4">
@@ -590,7 +610,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- VIDEO 2: ChatGPT, dude -->
         <!-- ════════════════════════════════════════ -->
-        <div id="chatgpt-dude" class="step" data-x="21500" data-y="5600" data-rotate="35" data-scale="1">
+        <div id="chatgpt-dude" class="step" data-x="2936" data-y="1600" data-z="1120" data-rotate-y="144" data-rotate-order="yxz" data-scale="1.2">
             <h3>ChatGPT, dude</h3>
             <video class="slide-video" controls style="max-height: 650px; width: auto;">
                 <source src="assets/chatgpt-dude.mp4" type="video/mp4">
@@ -600,7 +620,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- CLINE TASK — nested (zoom in) -->
         <!-- ════════════════════════════════════════ -->
-        <div id="cline-task" class="step" data-x="20200" data-y="6400" data-rotate="35" data-scale="0.5">
+        <div id="cline-task" class="step" data-x="584" data-y="-2400" data-z="6046" data-rotate-y="144" data-rotate-order="yxz" data-scale="0.6">
             <h3>Cline: generate an ETH schema</h3>
             <img src="assets/southpark-screenshot1.png" alt="Cline task: generate SQL schema for Ethereum blocks and transactions" class="slide-img">
         </div>
@@ -608,7 +628,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- CLINE REASONING — nested (zoom in) -->
         <!-- ════════════════════════════════════════ -->
-        <div id="cline-reasoning" class="step" data-x="21500" data-y="6800" data-rotate="35" data-scale="0.8">
+        <div id="cline-reasoning" class="step" data-x="584" data-y="0" data-z="6046" data-rotate-y="144" data-rotate-order="yxz" data-scale="0.8">
             <h3>Cline thinks it through</h3>
             <div class="img-grid">
                 <img src="assets/southpark-screenshot2.png" alt="Cline reasoning about Ethereum block fields">
@@ -620,7 +640,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- CLINE OUTPUT — nested (zoom in) -->
         <!-- ════════════════════════════════════════ -->
-        <div id="cline-output" class="step" data-x="22800" data-y="6400" data-rotate="35" data-scale="0.5">
+        <div id="cline-output" class="step" data-x="584" data-y="2400" data-z="6046" data-rotate-y="144" data-rotate-order="yxz" data-scale="0.6">
             <h3>The generated schema</h3>
             <img src="assets/southpark-ollama.png" alt="Generated SQL schema for Ethereum blockchain data" class="slide-img">
         </div>
@@ -628,7 +648,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- LOCAL LLM — nested (deep zoom) -->
         <!-- ════════════════════════════════════════ -->
-        <div id="local-llm" class="step" data-x="23200" data-y="7200" data-rotate="35" data-scale="0.5">
+        <div id="local-llm" class="step" data-x="-1768" data-y="0" data-z="10972" data-rotate-y="144" data-rotate-order="yxz" data-scale="0.6">
             <span class="tag orange">Advice wanted!</span>
             <h3>Running LLMs locally</h3>
             <ul>
@@ -643,7 +663,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- POSTGRESQL — parent (zoomed out) -->
         <!-- ════════════════════════════════════════ -->
-        <div id="postgres" class="step" data-x="25500" data-y="4200" data-rotate="40" data-scale="3">
+        <div id="postgres" class="step" data-x="-7054" data-y="0" data-z="-6292" data-rotate-y="216" data-rotate-order="yxz" data-scale="3">
             <span class="tag">Broadly Relevant Topic #3</span>
             <h2>PostgreSQL <span class="subtitle">(The elephant in the room)</span></h2>
             <div class="grid-2">
@@ -663,14 +683,14 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- POSTGRES ECOSYSTEM — nested (zoom in) -->
         <!-- ════════════════════════════════════════ -->
-        <div id="postgres-ecosystem" class="step" data-x="26500" data-y="5600" data-rotate="40" data-scale="0.5" style="padding: 0; display: flex; align-items: center; justify-content: center;">
+        <div id="postgres-ecosystem" class="step" data-x="-2938" data-y="0" data-z="-630" data-rotate-y="216" data-rotate-order="yxz" data-scale="0.6" style="padding: 0; display: flex; align-items: center; justify-content: center;">
             <img src="assets/postgres-ecosystem.jpg" alt="PostgreSQL ecosystem diagram" class="slide-img" style="max-width: 100%; max-height: 850px; margin: 0; object-fit: contain;">
         </div>
 
         <!-- ════════════════════════════════════════ -->
         <!-- PARQUET FILES -->
         <!-- ════════════════════════════════════════ -->
-        <div id="parquet" class="step" data-x="29000" data-y="5000" data-rotate="45">
+        <div id="parquet" class="step" data-x="-11416" data-y="0" data-z="-19708" data-rotate-y="288" data-rotate-order="yxz" data-scale="3">
             <span class="tag">Broadly Relevant Topic #4</span>
             <h2>Parquet Files</h2>
             <p style="margin-bottom: 12px;">Start with CSV, then solve every problem:</p>
@@ -693,7 +713,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- SCAM ANALYSIS — parent (zoomed out) -->
         <!-- ════════════════════════════════════════ -->
-        <div id="scam-analysis" class="step" data-x="32500" data-y="4200" data-rotate="50" data-scale="3">
+        <div id="scam-analysis" class="step" data-x="-2400" data-y="-1600" data-z="-44000" data-rotate-x="45" data-rotate-z="240" data-rotate-order="zxy" data-scale="3">
             <span class="tag red">The Analysis</span>
             <h2>Scam analysis!</h2>
         </div>
@@ -701,7 +721,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- DUPLICATE SHORT ADDRESSES -->
         <!-- ════════════════════════════════════════ -->
-        <div id="duplicate-addresses" class="step" data-x="30800" data-y="4200" data-rotate="50" data-scale="1">
+        <div id="duplicate-addresses" class="step" data-x="-4000" data-y="-2800" data-z="-47000" data-rotate-x="45" data-rotate-z="240" data-rotate-order="zxy" data-scale="1.2">
             <span class="tag orange">Address Collisions</span>
             <h2>Duplicate short addresses</h2>
             <ul>
@@ -723,7 +743,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- TRANSACTION ANALYSIS — arrows + PostgreSQL -->
         <!-- ════════════════════════════════════════ -->
-        <div id="tx-analysis" class="step" data-x="32500" data-y="5400" data-rotate="50" data-scale="1">
+        <div id="tx-analysis" class="step" data-x="-4800" data-y="-3600" data-z="-49000" data-rotate-x="45" data-rotate-z="240" data-rotate-order="zxy" data-scale="1.2">
             <h3>Transaction pattern</h3>
             <div class="flow">
                 <div class="flow-step">
@@ -745,9 +765,25 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         </div>
 
         <!-- ════════════════════════════════════════ -->
+        <!-- MALLORY'S PERSPECTIVE -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="mallory-perspective" class="step" data-x="-5200" data-y="-4800" data-z="-50400" data-rotate-x="45" data-rotate-z="240" data-rotate-order="zxy" data-scale="0.6" style="padding: 20px 40px;">
+            <h3>From <span class="mallory">Mallory's</span> perspective</h3>
+            <img src="assets/mallory-perspective.png" alt="Etherscan view from Mallory's perspective" class="slide-img" style="max-height: 700px; width: auto;">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- ALICE'S PERSPECTIVE -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="alice-perspective" class="step" data-x="-5800" data-y="-5600" data-z="-51600" data-rotate-x="45" data-rotate-z="240" data-rotate-order="zxy" data-scale="0.6" style="padding: 20px 40px;">
+            <h3>From <span class="alice">Alice's</span> perspective</h3>
+            <img src="assets/alice-perspective.png" alt="Etherscan view from Alice's perspective" class="slide-img" style="max-height: 700px; width: auto;">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
         <!-- MANUAL SPOT CHECKS -->
         <!-- ════════════════════════════════════════ -->
-        <div id="spot-checks" class="step" data-x="34200" data-y="4800" data-rotate="50" data-scale="0.5">
+        <div id="spot-checks" class="step" data-x="-6400" data-y="-4400" data-z="-52800" data-rotate-x="45" data-rotate-z="240" data-rotate-order="zxy" data-scale="0.6">
             <span class="tag blue">Specifics</span>
             <h3>Precise definitions</h3>
             <ul>
@@ -762,7 +798,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- SQL: Alice to Bob -->
         <!-- ════════════════════════════════════════ -->
-        <div id="sql-alice-to-bob" class="step" data-x="34800" data-y="5400" data-rotate="50" data-scale="0.4">
+        <div id="sql-alice-to-bob" class="step" data-x="-7200" data-y="-5200" data-z="-54400" data-rotate-x="45" data-rotate-z="240" data-rotate-order="zxy" data-scale="0.5">
             <h3><span class="alice">Alice</span> → <span class="bob">Bob</span> <span style="color:#888">(legitimate)</span></h3>
             <pre><span class="accent">CREATE MATERIALIZED VIEW</span> ethereum_transactions_alice_to_bob <span class="accent">AS</span>
  <span class="accent">SELECT DISTINCT</span> t.hash <span class="accent">AS</span> transaction_hash,
@@ -781,7 +817,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- SQL: Mallory to Alice -->
         <!-- ════════════════════════════════════════ -->
-        <div id="sql-mallory-to-alice" class="step" data-x="35400" data-y="5800" data-rotate="50" data-scale="0.4">
+        <div id="sql-mallory-to-alice" class="step" data-x="-8000" data-y="-6000" data-z="-56000" data-rotate-x="45" data-rotate-z="240" data-rotate-order="zxy" data-scale="0.5">
             <h3><span class="mallory">Mallory</span> → <span class="alice">Alice</span> <span style="color:#888">(bait)</span></h3>
             <pre><span class="accent">CREATE MATERIALIZED VIEW</span> ethereum_transactions_mallory_to_alice <span class="accent">AS</span>
  <span class="accent">WITH</span> ignore_addresses <span class="accent">AS</span> (
@@ -811,7 +847,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- SQL: Alice to Mallory -->
         <!-- ════════════════════════════════════════ -->
-        <div id="sql-alice-to-mallory" class="step" data-x="36000" data-y="6200" data-rotate="50" data-scale="0.4">
+        <div id="sql-alice-to-mallory" class="step" data-x="-8800" data-y="-6800" data-z="-57600" data-rotate-x="45" data-rotate-z="240" data-rotate-order="zxy" data-scale="0.5">
             <h3><span class="alice">Alice</span> → <span class="mallory">Mallory</span> <span style="color:#888">(scammed!)</span></h3>
             <pre><span class="accent">CREATE MATERIALIZED VIEW</span> ethereum_transactions_alice_to_mallory <span class="accent">AS</span>
  <span class="accent">SELECT DISTINCT</span> t.hash <span class="accent">AS</span> transaction_hash,
@@ -829,19 +865,30 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         <!-- ════════════════════════════════════════ -->
         <!-- NEXT STEPS -->
         <!-- ════════════════════════════════════════ -->
-        <div id="next-steps" class="step" data-x="36000" data-y="5800" data-rotate="55">
+        <div id="next-steps" class="step" data-x="-9200" data-y="-7200" data-z="-59200" data-rotate-x="50" data-rotate-z="260" data-rotate-order="zxy" data-scale="1.5">
             <span class="tag accent">What's next</span>
             <h2>Next steps</h2>
             <ul>
-                <li><span class="highlight">Follow the money:</span> trace how Mallory's addresses were funded and where stolen funds end up — if either side touches a KYC exchange, recovery may actually be possible</li>
                 <li><span class="blue">Real-time detection:</span> continuously process new blocks and flag suspicious transactions, feed data to wallets and block explorers so users get warnings <em>before</em> they send</li>
                 <li><span class="accent">Expand to other chains:</span> this attack applies to nearly every blockchain. Layer-2 chains like Binance Smart Chain are especially ripe — lower fees make the scam cheaper to run at scale</li>
+            </ul>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- NEXT STEPS (AMBITIOUS) -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="next-steps-ambitious" class="step" data-x="-9600" data-y="-7600" data-z="-60800" data-rotate-x="55" data-rotate-z="280" data-rotate-order="zxy" data-scale="1.5">
+            <span class="tag accent">What's next</span>
+            <h2>Next steps <span class="subtitle">(for the ambitious)</span></h2>
+            <ul>
+                <li><span class="highlight">Follow the money:</span> trace how <span class="mallory">Mallory's</span> addresses were funded and where stolen funds end up — if either side touches a KYC exchange, recovery may actually be possible</li>
                 <li><span class="warn">Hunt the tooling:</span> locate the software and developers that make mass address generation and poisoning possible — understand the supply chain behind the scam</li>
+                <li><span class="alice">Exploit the scammers:</span> bait is sent from many scammers to <span class="alice">Alice</span> for <span class="alice">Alice</span> ↔ <span class="bob">Bob</span> pairs that frequently transact — if Alice <em>is</em> Bob, then the bait adds up. Can profit be made after transaction fees?</li>
             </ul>
         </div>
 
         <!-- Overview (invisible, for navigation) -->
-        <div id="overview" class="step overview" data-x="19000" data-y="4500" data-scale="36"></div>
+        <div id="overview" class="step overview" data-x="0" data-y="-2000" data-z="-30400" data-rotate-x="10" data-scale="90"></div>
 
     </div>
 
