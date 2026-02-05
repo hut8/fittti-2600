@@ -191,6 +191,79 @@
 
         .overview { display: none; }
 
+        /* ── Navigation Menu ── */
+        #nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+        #nav-menu.visible {
+            display: flex;
+        }
+        #nav-menu-inner {
+            background: rgba(20, 20, 20, 0.98);
+            border: 1px solid #333;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            max-height: 80vh;
+            max-width: 600px;
+            width: 90%;
+            overflow-y: auto;
+        }
+        #nav-menu-header {
+            background: rgba(64, 196, 255, 0.1);
+            color: #40c4ff;
+            padding: 16px 20px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+        }
+        #nav-menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        #nav-menu-list li {
+            border-bottom: 1px solid #222;
+        }
+        #nav-menu-list li:last-child {
+            border-bottom: none;
+        }
+        #nav-menu-list a {
+            color: #e0e0e0;
+            padding: 12px 20px;
+            display: block;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+            font-size: 16px;
+        }
+        #nav-menu-list a:hover {
+            background: rgba(64, 196, 255, 0.15);
+            color: #40c4ff;
+        }
+        #nav-menu-list li.active a {
+            background: rgba(64, 196, 255, 0.2);
+            color: #40c4ff;
+            border-left: 3px solid #40c4ff;
+        }
+        #nav-menu-list .slide-num {
+            color: #555;
+            font-size: 12px;
+            margin-right: 12px;
+        }
+
         /* ── Slide images ── */
         .slide-img {
             max-width: 100%;
@@ -675,16 +748,37 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         </div>
 
         <!-- ════════════════════════════════════════ -->
+        <!-- BEST AI CODING SETUP -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="best-ai-setup" class="step" data-x="-1000" data-y="-800" data-z="8500" data-rotate-y="144" data-rotate-order="yxz" data-scale="0.8">
+            <span class="tag green">Recommendation</span>
+            <h3>Best AI coding setup</h3>
+            <ul>
+                <li><span class="accent">Claude Code</span> — Anthropic's official CLI, agentic coding in the terminal</li>
+                <li><span class="accent">OpenCode</span> — open-source alternative, works with any model</li>
+                <li>My favorite cloud model: <span class="highlight">Claude Opus 4.6</span> (came out yesterday!)</li>
+                <li>Anthropic's <span class="blue">Claude Max</span> at $100/month is worth every penny — unlimited Opus usage for heavy coding sessions</li>
+            </ul>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- CLAUDE CODE TESTS SCREENSHOT -->
+        <!-- ════════════════════════════════════════ -->
+        <div id="claude-code-tests" class="step" data-x="-1384" data-y="-400" data-z="9736" data-rotate-y="144" data-rotate-order="yxz" data-scale="0.7" style="padding: 0; display: flex; align-items: center; justify-content: center;">
+            <img src="assets/claude-code-tests.png" alt="Claude Code finding tests in a project" class="slide-img" style="max-width: 100%; max-height: 850px; margin: 0; object-fit: contain;">
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
         <!-- LOCAL LLM — nested (deep zoom) -->
         <!-- ════════════════════════════════════════ -->
         <div id="local-llm" class="step" data-x="-1768" data-y="0" data-z="10972" data-rotate-y="144" data-rotate-order="yxz" data-scale="0.6">
             <span class="tag orange">Advice wanted!</span>
             <h3>Running LLMs locally</h3>
             <ul>
-                <li>Some businesses are paranoid, some managers hate productivity — Cline/Claude isn't for all projects</li>
+                <li>Some businesses are paranoid, some managers hate productivity — cloud AI isn't for all projects</li>
                 <li>ETH switching from POW to POS = more GPUs available</li>
-                <li>Tried open-source models via ollama — <span class="warn">it did not go well</span></li>
-                <li>Are there any good ones? How do you deploy them?</li>
+                <li>Top contenders: <span class="accent">Qwen3-Coder-Next</span> (3 days ago), <span class="accent">DeepSeek v3.2</span>, <span class="accent">Kimi K2.5</span></li>
+                <li>Subreddits: <a href="https://reddit.com/r/ollama" style="color: #40c4ff;">r/ollama</a>, <a href="https://reddit.com/r/LocalLLaMA" style="color: #40c4ff;">r/LocalLLaMA</a>, <a href="https://reddit.com/r/LocalLLM" style="color: #40c4ff;">r/LocalLLM</a></li>
             </ul>
             <img src="assets/southpark-localllm.png" alt="Cline Ollama configuration for local LLM" class="slide-img">
         </div>
@@ -1070,11 +1164,83 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
 
     </div>
 
+    <!-- Navigation Menu -->
+    <div id="nav-menu">
+        <div id="nav-menu-inner">
+            <div id="nav-menu-header">Slides (press T to close)</div>
+            <ul id="nav-menu-list"></ul>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@2.0.0/js/impress.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
         var api = impress();
         api.init();
+
+        // Custom navigation menu
+        (function() {
+            var menu = document.getElementById('nav-menu');
+            var list = document.getElementById('nav-menu-list');
+            var steps = document.querySelectorAll('.step:not(.overview)');
+
+            // Build menu from slides
+            steps.forEach(function(step, index) {
+                var title = '';
+                var h1 = step.querySelector('h1');
+                var h2 = step.querySelector('h2');
+                var h3 = step.querySelector('h3');
+                var tag = step.querySelector('.tag');
+
+                if (h1) title = h1.textContent.trim();
+                else if (h2) title = h2.textContent.trim();
+                else if (h3) title = h3.textContent.trim();
+                else if (tag) title = tag.textContent.trim();
+                else title = step.id || 'Slide ' + (index + 1);
+
+                var li = document.createElement('li');
+                li.dataset.stepId = step.id;
+                var a = document.createElement('a');
+                a.href = '#/' + step.id;
+                a.innerHTML = '<span class="slide-num">' + (index + 1) + '</span>' + title;
+                a.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    api.goto(step.id);
+                    menu.classList.remove('visible');
+                });
+                li.appendChild(a);
+                list.appendChild(li);
+            });
+
+            // Toggle menu with 't' key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 't' || e.key === 'T') {
+                    menu.classList.toggle('visible');
+                    e.preventDefault();
+                }
+                if (e.key === 'Escape' && menu.classList.contains('visible')) {
+                    menu.classList.remove('visible');
+                }
+            });
+
+            // Close when clicking outside
+            menu.addEventListener('click', function(e) {
+                if (e.target === menu) {
+                    menu.classList.remove('visible');
+                }
+            });
+
+            // Highlight current slide
+            document.addEventListener('impress:stepenter', function(e) {
+                var items = list.querySelectorAll('li');
+                items.forEach(function(item) {
+                    item.classList.remove('active');
+                    if (item.dataset.stepId === e.target.id) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        })();
 
         var vid = document.getElementById('very-interesting-video');
         vid.addEventListener('ended', function() { api.next(); });
