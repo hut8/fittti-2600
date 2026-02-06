@@ -864,30 +864,6 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
         </div>
 
         <!-- ════════════════════════════════════════ -->
-        <!-- TRANSACTION ANALYSIS — arrows + PostgreSQL -->
-        <!-- ════════════════════════════════════════ -->
-        <div id="tx-analysis" class="step" data-x="-4800" data-y="-3600" data-z="-49000" data-rotate-x="45" data-rotate-z="240" data-rotate-order="zxy" data-scale="1.2">
-            <h3>Transaction pattern</h3>
-            <div class="flow">
-                <div class="flow-step">
-                    <span class="flow-num green">1</span>
-                    <div class="flow-node alice"><span class="alice">Alice</span> → <span class="bob">Bob</span> <span style="color:#888">(legitimate)</span></div>
-                </div>
-                <div class="flow-arrow">&#8595;</div>
-                <div class="flow-step">
-                    <span class="flow-num red">2</span>
-                    <div class="flow-node mallory"><span class="mallory">Mallory</span> → <span class="alice">Alice</span> <span style="color:#888">(bait)</span></div>
-                </div>
-                <div class="flow-arrow">&#8595;</div>
-                <div class="flow-step">
-                    <span class="flow-num red">3</span>
-                    <div class="flow-node mallory"><span class="alice">Alice</span> → <span class="mallory">Mallory</span> <span style="color:#888">(scammed!)</span></div>
-                </div>
-            </div>
-            <p style="margin-top: 24px; font-size: 36px; text-align: center;">Just use <span class="accent">PostgreSQL!</span></p>
-        </div>
-
-        <!-- ════════════════════════════════════════ -->
         <!-- MALLORY'S PERSPECTIVE -->
         <!-- ════════════════════════════════════════ -->
         <div id="mallory-perspective" class="step" data-x="-5200" data-y="-4800" data-z="-50400" data-rotate-x="45" data-rotate-z="240" data-rotate-order="zxy" data-scale="0.6" style="padding: 20px 40px;">
@@ -1034,7 +1010,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
                 </tr>
                 <tr>
                     <td style="padding: 12px 12px; color: #888; border-right: 1px solid #333;">SUCCESS RATE</td>
-                    <td colspan="5" style="padding: 12px 12px; text-align: right;"><span class="accent">&lt;0.01%</span> — 461 / 7,416,543 bait tx</td>
+                    <td colspan="5" style="padding: 12px 12px; text-align: right;"><span class="accent">0.00622%</span> — 461 / 7,416,543 bait tx</td>
                 </tr>
             </table>
             <p style="margin-top: 12px; font-size: 18px; color: #666;">USD values derived from CoinMarketCap exchange rate at time of each transaction</p>
@@ -1089,7 +1065,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
                 </tr>
                 <tr>
                     <td style="padding: 12px 12px; color: #888; border-right: 1px solid #333;">SUCCESS RATE</td>
-                    <td colspan="5" style="padding: 12px 12px; text-align: right;"><span class="accent">&lt;0.01%</span> — 772 / 8,281,104 bait tx</td>
+                    <td colspan="5" style="padding: 12px 12px; text-align: right;"><span class="accent">0.00932%</span> — 772 / 8,281,104 bait tx</td>
                 </tr>
             </table>
             <p style="margin-top: 12px; font-size: 18px; color: #666;">USD values derived from CoinMarketCap exchange rate at time of each transaction</p>
@@ -1104,7 +1080,7 @@ NODE_URL = <span class="highlight">"http://localhost:8545"</span>
             <p style="font-size: 48px; margin: 40px 0;"><span class="accent">1 in 10,700</span></p>
             <ul>
                 <li>Similar to guessing a <span class="highlight">4-digit PIN</span> on the first try (1 in 10,000)</li>
-                <li>Similar to getting <span class="highlight">struck by lightning</span> in a given year (1 in 15,000)</li>
+                <li>Similar to bowling a <span class="highlight">perfect 300 game</span> (~1 in 11,500)</li>
             </ul>
             <p style="margin-top: 40px; color: #888;">Yet with 8 million attempts, 772 people still got scammed.</p>
         </div>
